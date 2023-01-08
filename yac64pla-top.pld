@@ -1,0 +1,48 @@
+GAL20V8
+C64 PLA replacement top chip
+
+
+EXROM  CAS    RW     A12    BA     AEC    A14    A15    FE     A13    CHAREN GND   
+OE     IRAM   GRW    LORAM  ROML   IO     BASIC  TIO1   TIO2   TCR    GAME   VCC   
+
+
+/GRW.T = A15 & A14 & /A13 & A12 & /AEC & /CAS & /RW
+GRW.E = /OE
+
+/ROML.T = A15 & /A14 & /A13 & /AEC & /EXROM & IRAM & LORAM & RW +
+          A15 & /A14 & /A13 & /AEC & EXROM & /GAME
+ROML.E = /OE
+
+/IO.T = /TIO2 +
+        /TIO1
+IO.E = /OE
+
+/BASIC.T = A15 & /A14 & A13 & /AEC & GAME & IRAM & LORAM & RW
+BASIC.E = /OE
+
+/TIO1.T = A15 & A14 & /A13 & A12 & /AEC &      CHAREN & GAME & LORAM & /RW +
+          A15 & A14 & /A13 & A12 & /AEC &      CHAREN & GAME & IRAM  & /RW +
+          A15 & A14 & /A13 & A12 & /AEC & BA & CHAREN & GAME & LORAM       +
+          A15 & A14 & /A13 & A12 & /AEC & BA & CHAREN & GAME & IRAM
+TIO1.E = VCC
+
+/TIO2.T = A15 & A14 & /A13 & A12 & /AEC &      CHAREN & /GAME & LORAM & /RW +
+          A15 & A14 & /A13 & A12 & /AEC &      CHAREN & /GAME & IRAM  & /RW +
+          A15 & A14 & /A13 & A12 & /AEC & BA & CHAREN & /GAME & LORAM       +
+          A15 & A14 & /A13 & A12 & /AEC & BA & CHAREN & /GAME & IRAM        +
+          A15 & A14 & /A13 & A12 & /AEC &      EXROM  & /GAME         & /RW +
+          A15 & A14 & /A13 & A12 & /AEC & BA & EXROM  & /GAME
+TIO2.E = /OE
+
+/TCR.T = A15 & A14 & /A13 & /A12 & EXROM & /GAME +
+         /TIO2 +
+         /TIO1 +
+         /ROML +
+         /BASIC +
+         CAS
+TCR.E = /OE
+
+
+DESCRIPTION
+Replacement for 906114-01
+Generated with genplcc.pl

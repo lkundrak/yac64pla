@@ -1,0 +1,35 @@
+GAL20V8
+C64 PLA replacement bottom chip
+
+
+A12    RW     VA13   AEC    TCR    CHAREN IRAM   FE     LORAM  VA14   A13    GND   
+OE     A15    uTIO2  ROMH   A14    EXROM  GAME   CHAROM KERNAL CASRAM VA12   VCC   
+
+
+/ROMH.T = A15 & /A14 & A13 &               /AEC & /EXROM & /GAME & IRAM & RW +
+                             VA13 & VA12 &  AEC &  EXROM & /GAME             +
+          A15 &  A14 & A13 &               /AEC &  EXROM & /GAME
+ROMH.E = /OE
+
+/CHAROM.T = A15 & A14 & /A13 & A12 & /AEC & /CHAREN & /EXROM & /GAME & IRAM  & RW  +
+            A15 & A14 & /A13 & A12 & /AEC & /CHAREN &           GAME & LORAM & RW  +
+            A15 & A14 & /A13 & A12 & /AEC & /CHAREN &           GAME & IRAM  & RW  +
+            VA14 & /VA13 & VA12 &     AEC &           /EXROM                       +
+            VA14 & /VA13 & VA12 &     AEC &                     GAME
+CHAROM.E = /OE
+
+/KERNAL.T = A15 & A14 & A13 & /AEC & /EXROM & /GAME & IRAM & RW +
+            A15 & A14 & A13 & /AEC &           GAME & IRAM & RW
+KERNAL.E = /OE
+
+/CASRAM.T =       /A14 & /A13 & /A12 & CHAROM & KERNAL & ROMH & TCR +
+            A15 &  A14 &               CHAROM & KERNAL & ROMH & TCR +
+            A15 &        /A13 &        CHAROM & KERNAL & ROMH & TCR +
+                                GAME & CHAROM & KERNAL & ROMH & TCR +
+                              /EXROM & CHAROM & KERNAL & ROMH & TCR
+CASRAM.E = /OE
+
+
+DESCRIPTION
+Replacement for 906114-01
+Generated with genplcc.pl
