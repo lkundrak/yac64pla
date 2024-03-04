@@ -1,4 +1,4 @@
-yac64pla -- Yet Another GAL-based C64 PLA replacement
+yac64pla -- Yet Another PLD-based C64 PLA replacement
 =====================================================
 
 TLDR: This is a derivative of `c64pla`_, the C64 PLA replacement project that
@@ -50,7 +50,49 @@ Schematic
 .. image:: yac64pla-sch.svg
    :width: 1280px
 
-GAL programming
+Parts
+-----
+
+GAL (and compatible ATF) family devices that use PLCC-28 can be used.
+In particular, that's GAL20V8, GAL22V10, ATF20V8 or ATF22V10.
+
+Building it
+-----------
+
+1. Order the PCB. With the KiCAD's PCBway and JLC plugis (perhaps others),
+   it's really little more than one click away.
+
+2. Program the JED files on to the PLDs. I use the TL866-II programmer with
+   the `minipro`_ tool. You'll also need the PLCC-28 to DIL-24 adapter.
+
+   The repository contains the pre-built JED files for individual chips of
+   supported device families:
+
+   yac64pla-top-20V8.jed
+      Top chip programming for GAL20V8 or ATF20V8 devices.
+
+   yac64pla-bot-20V8.jed
+      Bottom chip programming for GAL20V8 or ATF20V8 devices.
+
+   yac64pla-top-22V10.jed
+      Top chip programming for GAL22V10 or ATF22V10 devices.
+
+   yac64pla-bot-22V10.jed
+      Bottom chip programming for GAL22V10 or ATF22V10 devices.
+
+3. Solder it. Even though there are SMD parts, they're large enough for
+   them not to be difficult to hand-solder.
+
+.. _minipro: https://gitlab.com/DavidGriffith/minipro
+
+Should you need any help, find out if there's a Hackerspace in your area.
+You're certain to find someone who's going to help you acquire the skills
+you need.
+
+You may try dropping me a message. I'd be happy to help but note I haven't
+figured out how not to suck at e-mail yet.
+
+PLD programming
 ---------------
 
 The c64pla is programmed with WinCUPL. Thus sucks, because while it's
@@ -67,28 +109,6 @@ across the chips. It also updates the KiCAD schematic, ensuring the PCB
 stays up to date. This is probably not too useful now, but it enabled me to
 shuffle pins around when choosing a good enough pin layout for the tight
 routing on the small PCB.
-
-How to build one
-----------------
-
-1. Order the PCB. With the KiCAD's PCBway and JLC plugis (perhaps others),
-   it's really little than one click away.
-
-2. Program the GALs. I use the TL866-II programmer with the `minipro`_ tool.
-   You'll also need the PLCC-28 to DIL-24 adapter. The repository contains
-   the pre-built JED files for GAL programming.
-
-3. Solder it. Even though there are SMD parts, they're large enough for
-   them not to be difficult to hand-solder.
-
-.. _minipro: https://gitlab.com/DavidGriffith/minipro
-
-Should you need any help, find out if there's a Hackerspace in your area.
-You're certain to find someone who's going to help you acquire the skills
-you need.
-
-You may try dropping me a message. I'd be happy to help but note I haven't
-figured out how not to suck at e-mail yet.
 
 Licensing
 ---------

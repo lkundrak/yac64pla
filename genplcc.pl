@@ -41,19 +41,20 @@ use genpin;
 
 sub doone
 {
-	my $fn = shift;
+	my $loc = shift;
 	my $dev = shift;
-	my $cmt = shift;
 
-	genpin::dogen ("$fn.pld", $dev, $cmt, @_);
-	system ("galette $fn.pld") and exit $?;
+	my $fn = "yac64pla-$loc-$dev.pld";
+
+	genpin::dogen ($fn, "GAL$dev", "C64 PLA replacement - $loc chip", @_);
+	system ("galette $fn") and exit $?;
 }
-
-my $dev = 'GAL20V8';
 
 # Template the KiCAD schematic
 genpin::dosch ('yac64pla-tmpl.kicad_sch', 'yac64pla.kicad_sch', \@LP, \@RP);
 
-# Compile the GAL fuse map
-doone ('yac64pla-top', $dev, 'C64 PLA replacement top chip', @LP);
-doone ('yac64pla-bot', $dev, 'C64 PLA replacement bottom chip', @RP);
+# Compile the PLD fuse map
+doone ('top', '20V8',  @LP);
+doone ('bot', '20V8',  @RP);
+doone ('top', '22V10', @LP);
+doone ('bot', '22V10', @RP);
