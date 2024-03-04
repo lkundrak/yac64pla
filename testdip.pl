@@ -4,7 +4,7 @@ use warnings;
 use lib qw/./;
 use genpin;
 
-my @LP = qw(
+my @TOP = qw(
 
        11|9|~CAS 10|8|~LORAM 9|7|~IRAM 8|X 7|6|~CHAREN 6|5|~AEC 5|4|A15
   
@@ -20,7 +20,7 @@ my @LP = qw(
 
 );
 
-my @RP = qw(
+my @BOT = qw(
 
          11|9|FE 10|8|~LORAM 9|7|~IRAM 8|X 7|6|~CHAREN 6|5|~AEC 5|4|A15
   
@@ -48,6 +48,6 @@ sub doone
 }
 
 my $dev = 'GAL20V8';
-doone ('old-l', $dev, '906114-01_20V8_L', @LP);
-doone ('old-r', $dev, '906114-01_20V8_R', @RP);
-genpin::dosch ('yac64pla-tmpl.kicad_sch', 'old.kicad_sch', \@LP, \@RP);
+doone ('old-top', $dev, '906114-01_20V8_L', @TOP);
+doone ('old-bot', $dev, '906114-01_20V8_R', @BOT);
+genpin::dosch ('yac64pla-tmpl.kicad_sch', 'old.kicad_sch', \@TOP, \@BOT);

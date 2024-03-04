@@ -177,16 +177,16 @@ sub dosch
 {
 	my $tmpl = shift;
 	my $out = shift;
-	my $lp = shift;
-	my $rp = shift;
+	my $top = shift;
+	my $bot = shift;
 
 	open my $tf, '<', $tmpl or die "$tmpl: $!";
 	my $t = join '', <$tf>;
 
-	dosubst (\$t, 'L', $lp);
-	dosubst (\$t, 'R', $rp);
+	dosubst (\$t, 'T', $top);
+	dosubst (\$t, 'B', $bot);
 	$t =~ s/"\$TEMPLATE"/"Generated from $0"/;
-	die if $t =~ /\$[RL]/;
+	die if $t =~ /\$[TB]/;
 
 	open my $of, '>', $out or die "$out: $!";
 	print $of $t;

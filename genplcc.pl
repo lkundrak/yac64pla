@@ -9,7 +9,7 @@ use genpin;
 # This visually matches the board,
 # hopefully making sensible routing easier
 
-                                        my @LP = qw{
+                                        my @TOP = qw{
 (FE)                                                                                        (VCC)
                 11|9|FE 10|8|A15 9|7|A14 8|X 7|6|~AEC 6|5|BA 5|4|A12
 (*A13)                                                                                      (*A12)
@@ -23,7 +23,7 @@ use genpin;
 (*~CHAREN)                                                                                  (~EXROM)
                19|16|~LORAM 20|17<~ROML 21|18<~I/O 22|X 23|19<~BASIC 24|20<TIO1 25|21<TIO2
 (~IRAM)                                                                                     (~GAME)
-                                       }; my @RP = qw{
+                                       }; my @BOT = qw{
 (*~LORAM)                                                                                    (VA13)
                   11|9|~LORAM 10|8|FE 9|7|~IRAM 8|X 7|6|~CHAREN 6|5|TCR 5|4|~AEC
 (~CAS)                                                                                      (VA12)
@@ -51,10 +51,10 @@ sub doone
 }
 
 # Template the KiCAD schematic
-genpin::dosch ('yac64pla-tmpl.kicad_sch', 'yac64pla.kicad_sch', \@LP, \@RP);
+genpin::dosch ('yac64pla-tmpl.kicad_sch', 'yac64pla.kicad_sch', \@TOP, \@BOT);
 
 # Compile the PLD fuse map
-doone ('top', '20V8',  @LP);
-doone ('bot', '20V8',  @RP);
-doone ('top', '22V10', @LP);
-doone ('bot', '22V10', @RP);
+doone ('top', '20V8',  @TOP);
+doone ('bot', '20V8',  @BOT);
+doone ('top', '22V10', @TOP);
+doone ('bot', '22V10', @BOT);
