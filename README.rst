@@ -5,8 +5,6 @@ TLDR: This is a derivative of `c64pla`_, the C64 PLA replacement project that
 utilizes dual GAL chips. This one uses PLCC28 packages instead of DIL32
 and that's basically it.
 
-Warning: This hasn't been tested yet! It will be once the parts arrive.
-
 PLA replacements and the original c64pla
 ----------------------------------------
 
@@ -40,9 +38,12 @@ the original, use the original project. This one is not objectively better.
 The board
 ---------
 
-.. image:: yac64pla-brd.png
+.. image:: yac64pla-brd.jpeg
+   :width: 640px
 
-No real picture yet, since the parts haven't arrived yet.
+.. image:: yac64pla-render.png
+   :width: 640px
+
 
 Schematic
 ---------
